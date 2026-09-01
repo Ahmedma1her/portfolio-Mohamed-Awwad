@@ -1,0 +1,1366 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>محمد عواد | مهندس زراعي</title>
+    <style>
+      :root {
+        --bg: #f5f8f3;
+        --panel: rgba(255, 255, 255, 0.85);
+        --primary: #146c43;
+        --primary-strong: #0d4d32;
+        --primary-soft: #dfeee2;
+        --accent: #b9d98a;
+        --gold: #d7b56d;
+        --text: #1d2a20;
+        --muted: #56685b;
+        --line: rgba(20, 108, 67, 0.14);
+        --shadow: 0 22px 50px rgba(13, 77, 50, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(185, 217, 138, 0.2),
+            transparent 30%
+          ),
+          linear-gradient(180deg, #edf6eb 0%, #f8faf7 100%);
+      }
+
+      body.en {
+        direction: ltr;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      body.ar {
+        direction: rtl;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(12px);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 18px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--primary-strong);
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        font-size: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .menu a {
+        transition: 0.2s ease;
+      }
+      .menu a:hover {
+        color: var(--primary);
+      }
+
+      .lang-switch {
+        display: inline-flex;
+        background: var(--primary-soft);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px;
+      }
+
+      .lang-btn {
+        border: none;
+        background: transparent;
+        color: var(--muted);
+        padding: 7px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .lang-btn.active {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 8px 18px rgba(20, 108, 67, 0.28);
+      }
+
+      .hero {
+        padding: 72px 0 44px;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.35fr 0.8fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .hero-copy {
+        padding: 10px 0;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(20, 108, 67, 0.08);
+        color: var(--primary);
+        border: 1px solid rgba(20, 108, 67, 0.14);
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 16px;
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        line-height: 1.18;
+        color: var(--primary-strong);
+      }
+
+      .subtitle {
+        margin: 0;
+        font-size: 1.15rem;
+        line-height: 1.9;
+        color: var(--muted);
+        max-width: 760px;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 15px 24px;
+        border-radius: 14px;
+        font-weight: 800;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .btn.primary {
+        background: linear-gradient(135deg, var(--primary), #1b8b5c);
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(20, 108, 67, 0.22);
+      }
+
+      .btn.secondary {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--line);
+        color: var(--primary-strong);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero-card {
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+        padding: 28px 24px;
+      }
+
+      .profile-photo-wrap {
+        width: 178px;
+        height: 178px;
+        margin: 0 auto 18px;
+        border-radius: 28px;
+        overflow: hidden;
+        border: 3px solid rgba(20, 108, 67, 0.15);
+        box-shadow: 0 18px 32px rgba(20, 108, 67, 0.14);
+        background: linear-gradient(135deg, #e0f0d8, #cfeabd);
+      }
+
+      .profile-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 18%;
+        display: block;
+        transform: scale(1.06);
+      }
+
+      .profile-name {
+        text-align: center;
+        margin: 0;
+        font-size: 2rem;
+        color: var(--primary-strong);
+      }
+
+      .profile-role {
+        text-align: center;
+        color: var(--primary);
+        font-weight: 700;
+        margin: 8px 0 18px;
+      }
+
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+        color: var(--muted);
+      }
+
+      .contact-list li {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        line-height: 1.7;
+      }
+
+      .contact-list strong {
+        color: var(--primary-strong);
+      }
+
+      .section {
+        padding: 82px 0;
+      }
+
+      .section-header {
+        margin-bottom: 28px;
+      }
+      .section-header h2 {
+        margin: 0 0 10px;
+        color: var(--primary-strong);
+        font-size: clamp(2rem, 3vw, 3rem);
+      }
+      .section-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.8;
+      }
+
+      .about-box {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 28px 26px;
+        box-shadow: 0 16px 38px rgba(20, 108, 67, 0.06);
+      }
+
+      .about-box p {
+        margin: 0;
+        line-height: 2;
+        color: var(--text);
+        font-size: 1.04rem;
+      }
+
+      .stats-grid,
+      .skill-grid,
+      .edu-grid,
+      .project-grid {
+        display: grid;
+        gap: 22px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .skill-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .edu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .project-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .stat,
+      .skill-card,
+      .edu-card,
+      .exp-card,
+      .project-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: 0 16px 34px rgba(20, 108, 67, 0.05);
+      }
+
+      .stat {
+        padding: 26px 18px;
+        text-align: center;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+
+      .stat span {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .skill-card,
+      .edu-card,
+      .exp-card,
+      .project-card {
+        padding: 24px 22px;
+      }
+
+      .skill-card h3,
+      .edu-card h3,
+      .exp-card h3,
+      .project-card h3 {
+        margin: 0 0 14px;
+        color: var(--primary-strong);
+      }
+
+      .skill-card ul,
+      .exp-card ul {
+        margin: 0;
+        padding-inline-start: 22px;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .exp-grid {
+        display: grid;
+        gap: 22px;
+      }
+
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+
+      .job-role {
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      .job-meta {
+        color: var(--muted);
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .exp-card ul li {
+        margin-bottom: 6px;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .project-thumb {
+        height: 180px;
+        background: linear-gradient(
+          135deg,
+          rgba(20, 108, 67, 0.1),
+          rgba(185, 217, 138, 0.45)
+        );
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 3rem;
+        color: var(--primary-strong);
+        font-weight: 800;
+      }
+
+      .project-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+      }
+
+      .project-tags span {
+        background: var(--primary-soft);
+        color: var(--primary-strong);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.74rem;
+        font-weight: 700;
+      }
+
+      .edu-card p {
+        margin: 8px 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .footer {
+        padding: 28px 0 42px;
+        text-align: center;
+        color: var(--primary-strong);
+        font-weight: 700;
+      }
+
+      body.en .ar-only,
+      body.en .lang-label-ar {
+        display: none !important;
+      }
+      body.ar .en-only,
+      body.ar .lang-label-en {
+        display: none !important;
+      }
+
+      @media (max-width: 900px) {
+        .hero-wrap,
+        .stats-grid,
+        .skill-grid,
+        .edu-grid,
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav-right {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .hero {
+          padding-top: 40px;
+        }
+        .nav {
+          padding: 14px 0;
+        }
+
+        .brand {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .nav-right {
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 14px;
+        }
+
+        .menu {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px 14px;
+        }
+
+        .lang-switch {
+          align-self: center;
+        }
+
+        .hero-card {
+          padding: 20px 16px;
+        }
+
+        .profile-photo-wrap {
+          width: 160px;
+          height: 160px;
+          border-radius: 24px;
+        }
+
+        .cta-row {
+          flex-direction: column;
+        }
+        .btn {
+          width: 100%;
+          text-align: center;
+        }
+
+        .contact-list li {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body class="ar">
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">
+          <span class="brand-mark">MA</span>
+          <span>Mohamed Awwad</span>
+        </div>
+
+        <div class="nav-right">
+          <nav class="menu" aria-label="Main navigation">
+            <a href="#about" class="i18n" data-en="About" data-ar="من أنا"
+              >من أنا</a
+            >
+            <a href="#skills" class="i18n" data-en="Skills" data-ar="المهارات"
+              >المهارات</a
+            >
+            <a
+              href="#experience"
+              class="i18n"
+              data-en="Experience"
+              data-ar="الخبرة"
+              >الخبرة</a
+            >
+            <a
+              href="#education"
+              class="i18n"
+              data-en="Education"
+              data-ar="التعليم"
+              >التعليم</a
+            >
+            <a href="#contact" class="i18n" data-en="Contact" data-ar="التواصل"
+              >التواصل</a
+            >
+          </nav>
+
+          <div class="lang-switch" aria-label="Language switcher">
+            <button class="lang-btn active" data-lang="ar" type="button">
+              AR
+            </button>
+            <button class="lang-btn" data-lang="en" type="button">EN</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-wrap">
+          <div class="hero-copy">
+            <span
+              class="eyebrow i18n"
+              data-en="Agricultural Engineer"
+              data-ar="مهندس زراعي"
+              >مهندس زراعي</span
+            >
+            <h1
+              class="i18n"
+              data-en="Driven by sustainable farming, efficient crop production, and smart farm management."
+              data-ar="مدفوعاً بالزراعة المستدامة، والإنتاج المحصولي الفعال، وإدارة المزارع الذكية."
+            >
+              مدفوعاً بالزراعة المستدامة، والإنتاج المحصولي الفعال، وإدارة
+              المزارع الذكية.
+            </h1>
+            <p
+              class="subtitle i18n"
+              data-en="Agricultural engineer with hands-on experience in greenhouse management, organic farming, irrigation, pest control, water treatment, and agricultural project coordination."
+              data-ar="مهندس زراعي بخبرة عملية في إدارة البيوت المحمية، والزراعة العضوية، الري، مكافحة الآفات، معالجة المياه، وتنسيق المشاريع الزراعية."
+            >
+              مهندس زراعي بخبرة عملية في إدارة البيوت المحمية، والزراعة العضوية،
+              الري، مكافحة الآفات، معالجة المياه، وتنسيق المشاريع الزراعية.
+            </p>
+
+            <div class="cta-row">
+              <a
+                href="#experience"
+                class="btn primary i18n"
+                data-en="View Experience"
+                data-ar="عرض الخبرة"
+                >عرض الخبرة</a
+              >
+              <a
+                href="mailto:awwadmohamed40@gmail.com"
+                class="btn secondary i18n"
+                data-en="Contact Me"
+                data-ar="تواصل معي"
+                >تواصل معي</a
+              >
+              <a
+                href="mohammed awwad CV.txt"
+                class="btn secondary i18n"
+                data-en="Download CV"
+                data-ar="تحميل السيرة الذاتية"
+                download
+                >تحميل السيرة الذاتية</a
+              >
+            </div>
+          </div>
+
+          <aside class="hero-card" id="contact">
+            <div class="profile-photo-wrap">
+              <img
+                class="profile-photo"
+                src="photo.png"
+                alt="Agricultural Engineer profile"
+              />
+            </div>
+            <div class="profile-name">Mohamed Awwad</div>
+            <div
+              class="profile-role i18n"
+              data-en="Agricultural Engineer"
+              data-ar="مهندس زراعي"
+            >
+              مهندس زراعي
+            </div>
+            <ul class="contact-list">
+              <li>
+                <strong>Email:</strong> <span>aawadmohamed40@gmail.com</span>
+              </li>
+              <li>
+                <strong class="i18n" data-en="Location" data-ar="الموقع"
+                  >الموقع</strong
+                >:
+                <span class="i18n" data-en="Cairo, Egypt" data-ar="القاهرة، مصر"
+                  >القاهرة، مصر</span
+                >
+              </li>
+              <li>
+                <strong>LinkedIn:</strong>
+                <span>linkedin.com/in/mohamed-awwad-9b4807212</span>
+              </li>
+              <li>
+                <strong class="i18n" data-en="Focus" data-ar="التركيز"
+                  >التركيز</strong
+                >:
+                <span
+                  class="i18n"
+                  data-en="Organic farming, greenhouse systems, irrigation, crop production"
+                  data-ar="الزراعة العضوية، أنظمة البيوت المحمية، الري، إنتاج المحاصيل"
+                  >الزراعة العضوية، أنظمة البيوت المحمية، الري، إنتاج
+                  المحاصيل</span
+                >
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="i18n" data-en="About Me" data-ar="من أنا">من أنا</h2>
+            <p
+              class="i18n"
+              data-en="Professional agricultural specialist focused on productive, healthy, and sustainable crop systems."
+              data-ar="متخصص زراعي محترف يركز على أنظمة المحاصيل المنتجة والصحية والمستدامة."
+            >
+              متخصص زراعي محترف يركز على أنظمة المحاصيل المنتجة والصحية
+              والمستدامة.
+            </p>
+          </div>
+
+          <div class="about-box">
+            <p
+              class="i18n"
+              data-en="I am an agricultural engineer with a strong background in farm operations, greenhouse supervision, crop management, irrigation systems, pest control, and organic cultivation. I combine technical field knowledge with practical farm planning, procurement coordination, and efficient operations to deliver high-quality agricultural productivity."
+              data-ar="أنا مهندس زراعي لدي خبرة قوية في عمليات المزرعة، والإشراف على البيوت المحمية، وإدارة المحاصيل، وأنظمة الري، ومكافحة الآفات، والزراعة العضوية. أدمج بين المعرفة الفنية الميدانية والتخطيط العملي للمزارع، وتنسيق المشتريات، والكفاءة التشغيلية لتحقيق إنتاجية زراعية عالية الجودة."
+            >
+              أنا مهندس زراعي لدي خبرة قوية في عمليات المزرعة، والإشراف على
+              البيوت المحمية، وإدارة المحاصيل، وأنظمة الري، ومكافحة الآفات،
+              والزراعة العضوية. أدمج بين المعرفة الفنية الميدانية والتخطيط
+              العملي للمزارع، وتنسيق المشتريات، والكفاءة التشغيلية لتحقيق
+              إنتاجية زراعية عالية الجودة.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="stats">
+        <div class="container">
+          <div class="section-header">
+            <h2
+              class="i18n"
+              data-en="Professional Highlights"
+              data-ar="لمحة احترافية"
+            >
+              لمحة احترافية
+            </h2>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat">
+              <strong>3+</strong>
+              <span
+                class="i18n"
+                data-en="Years as Technical Farm Manager"
+                data-ar="سنوات كمدير فني للمزرعة"
+                >سنوات كمدير فني للمزرعة</span
+              >
+            </div>
+            <div class="stat">
+              <strong>5+</strong>
+              <span
+                class="i18n"
+                data-en="Months of greenhouse operations leadership"
+                data-ar="شهور في قيادة عمليات البيوت المحمية"
+                >شهور في قيادة عمليات البيوت المحمية</span
+              >
+            </div>
+            <div class="stat">
+              <strong>1+</strong>
+              <span
+                class="i18n"
+                data-en="Years in water treatment and biotechnology oversight"
+                data-ar="سنوات في إدارة معالجة المياه والتقنيات الحيوية"
+                >سنوات في إدارة معالجة المياه والتقنيات الحيوية</span
+              >
+            </div>
+            <div class="stat">
+              <strong>4</strong>
+              <span
+                class="i18n"
+                data-en="Key agricultural roles in farm and production operations"
+                data-ar="أدوار زراعية رئيسية في المزارع والعمليات الإنتاجية"
+                >أدوار زراعية رئيسية في المزارع والعمليات الإنتاجية</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="i18n" data-en="Project Showcase" data-ar="عرض المشاريع">
+              عرض المشاريع
+            </h2>
+            <p
+              class="i18n"
+              data-en="Examples of practical agricultural work, process coordination, and crop performance improvement."
+              data-ar="أمثلة على العمل الزراعي العملي، وتنظيم العمليات، وتحسين أداء المحاصيل."
+            >
+              أمثلة على العمل الزراعي العملي، وتنظيم العمليات، وتحسين أداء
+              المحاصيل.
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <div class="project-card">
+              <div class="project-thumb">🌿</div>
+              <h3
+                class="i18n"
+                data-en="Organic Farm Production"
+                data-ar="إنتاج مزرعة عضوية"
+              >
+                إنتاج مزرعة عضوية
+              </h3>
+              <p
+                class="i18n"
+                data-en="Coordinated agricultural operations to produce high-quality edible crops using organic cultivation methods and quality-driven farm management."
+                data-ar="تنسيق العمليات الزراعية لإنتاج محاصيل غذائية عالية الجودة باستخدام أساليب الزراعة العضوية وإدارة مزرعة قائمة على الجودة."
+              >
+                تنسيق العمليات الزراعية لإنتاج محاصيل غذائية عالية الجودة
+                باستخدام أساليب الزراعة العضوية وإدارة مزرعة قائمة على الجودة.
+              </p>
+              <div class="project-tags">
+                <span>Organic</span><span>Vegetables</span><span>Quality</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-thumb">🏡</div>
+              <h3
+                class="i18n"
+                data-en="Greenhouse Management"
+                data-ar="إدارة البيوت المحمية"
+              >
+                إدارة البيوت المحمية
+              </h3>
+              <p
+                class="i18n"
+                data-en="Supervised greenhouse cycles from soil preparation and planting through fertilization, crop health monitoring, and scheduled harvesting."
+                data-ar="إشراف على دورات البيوت المحمية من إعداد التربة والزراعة حتى التسميد، ومتابعة صحة المحاصيل، والحصاد المجدول."
+              >
+                إشراف على دورات البيوت المحمية من إعداد التربة والزراعة حتى
+                التسميد، ومتابعة صحة المحاصيل، والحصاد المجدول.
+              </p>
+              <div class="project-tags">
+                <span>Greenhouse</span><span>Irrigation</span
+                ><span>Planning</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-thumb">💧</div>
+              <h3
+                class="i18n"
+                data-en="Water Treatment & Sustainability"
+                data-ar="معالجة المياه والاستدامة"
+              >
+                معالجة المياه والاستدامة
+              </h3>
+              <p
+                class="i18n"
+                data-en="Managed water treatment systems with a focus on operational efficiency, sustainable treatment methods, and reliable resource control."
+                data-ar="إدارة أنظمة معالجة المياه مع التركيز على الكفاءة التشغيلية، والطرق المعالجة المستدامة، والسيطرة الموثوقة على الموارد."
+              >
+                إدارة أنظمة معالجة المياه مع التركيز على الكفاءة التشغيلية،
+                والطرق المعالجة المستدامة، والسيطرة الموثوقة على الموارد.
+              </p>
+              <div class="project-tags">
+                <span>Water</span><span>Efficiency</span
+                ><span>Sustainability</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="i18n" data-en="Core Skills" data-ar="المهارات الأساسية">
+              المهارات الأساسية
+            </h2>
+            <p
+              class="i18n"
+              data-en="Technical knowledge and practical experience across modern agricultural systems."
+              data-ar="معرفة فنية وخبرة عملية في الأنظمة الزراعية الحديثة."
+            >
+              معرفة فنية وخبرة عملية في الأنظمة الزراعية الحديثة.
+            </p>
+          </div>
+
+          <div class="skill-grid">
+            <div class="skill-card">
+              <h3
+                class="i18n"
+                data-en="Farm & Crop Management"
+                data-ar="إدارة المزرعة والمحاصيل"
+              >
+                إدارة المزرعة والمحاصيل
+              </h3>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Soil preparation and planting schedules"
+                  data-ar="إعداد التربة وجدولة الزراعة"
+                >
+                  إعداد التربة وجدولة الزراعة
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Fertilization and crop monitoring"
+                  data-ar="التسميد ومتابعة المحاصيل"
+                >
+                  التسميد ومتابعة المحاصيل
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Weeding and pest management"
+                  data-ar="العزق ومكافحة الآفات"
+                >
+                  العزق ومكافحة الآفات
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Harvest planning and crop quality control"
+                  data-ar="تخطيط الحصاد ومراقبة جودة المحاصيل"
+                >
+                  تخطيط الحصاد ومراقبة جودة المحاصيل
+                </li>
+              </ul>
+            </div>
+
+            <div class="skill-card">
+              <h3
+                class="i18n"
+                data-en="Greenhouse & Irrigation"
+                data-ar="البيوت المحمية والري"
+              >
+                البيوت المحمية والري
+              </h3>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Greenhouse cluster supervision"
+                  data-ar="إشراف على مجموعات البيوت المحمية"
+                >
+                  إشراف على مجموعات البيوت المحمية
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Irrigation system evaluation and maintenance"
+                  data-ar="تقييم وصيانة أنظمة الري"
+                >
+                  تقييم وصيانة أنظمة الري
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Water efficiency and crop follow-up"
+                  data-ar="كفاءة استخدام المياه ومتابعة المحاصيل"
+                >
+                  كفاءة استخدام المياه ومتابعة المحاصيل
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Equipment and supplier coordination"
+                  data-ar="تنسيق المعدات والموردين"
+                >
+                  تنسيق المعدات والموردين
+                </li>
+              </ul>
+            </div>
+
+            <div class="skill-card">
+              <h3
+                class="i18n"
+                data-en="Organic & Sustainable Farming"
+                data-ar="الزراعة العضوية والمستدامة"
+              >
+                الزراعة العضوية والمستدامة
+              </h3>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Organic production techniques"
+                  data-ar="أساليب الإنتاج العضوي"
+                >
+                  أساليب الإنتاج العضوي
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Vegetable crop production"
+                  data-ar="إنتاج الخضروات"
+                >
+                  إنتاج الخضروات
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Project management and agricultural planning"
+                  data-ar="إدارة المشاريع والتخطيط الزراعي"
+                >
+                  إدارة المشاريع والتخطيط الزراعي
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Cost control and operational scheduling"
+                  data-ar="مراقبة التكاليف وجدولة العمليات"
+                >
+                  مراقبة التكاليف وجدولة العمليات
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="i18n" data-en="Experience" data-ar="الخبرة">الخبرة</h2>
+            <p
+              class="i18n"
+              data-en="Progressive experience in agricultural management, production support, and technical field operations."
+              data-ar="خبرة متقدمة في الإدارة الزراعية، ودعم الإنتاج، والعمليات الميدانية الفنية."
+            >
+              خبرة متقدمة في الإدارة الزراعية، ودعم الإنتاج، والعمليات الميدانية
+              الفنية.
+            </p>
+          </div>
+
+          <div class="exp-grid">
+            <div class="exp-card">
+              <div class="job-header">
+                <h3>Voyageurs Du Monde Egypt</h3>
+                <span
+                  class="job-role i18n"
+                  data-en="Technical Farm Manager"
+                  data-ar="مدير فني للمزرعة"
+                  >مدير فني للمزرعة</span
+                >
+              </div>
+              <div
+                class="job-meta i18n"
+                data-en="August 2023 – Present | Aswan, Egypt"
+                data-ar="أغسطس 2023 - حتى الآن | أسوان، مصر"
+              >
+                أغسطس 2023 - حتى الآن | أسوان، مصر
+              </div>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Managed agricultural production processes from supplier coordination to final crop quality control."
+                  data-ar="إدارة عمليات الإنتاج الزراعي من التنسيق مع الموردين إلى مراقبة جودة المحاصيل النهائية."
+                >
+                  إدارة عمليات الإنتاج الزراعي من التنسيق مع الموردين إلى مراقبة
+                  جودة المحاصيل النهائية.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Coordinated with agricultural manufacturing companies for irrigation systems, greenhouses, and cold rooms."
+                  data-ar="التنسيق مع شركات التصنيع الزراعي لأنظمة الري، والبيوت المحمية، والغرف الباردة."
+                >
+                  التنسيق مع شركات التصنيع الزراعي لأنظمة الري، والبيوت المحمية،
+                  والغرف الباردة.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Identified best-value solutions to improve operational performance and farm efficiency."
+                  data-ar="تحديد الحلول الأكثر كفاءة لتحقيق أفضل قيمة وتحسين الأداء التشغيلي للمزرعة."
+                >
+                  تحديد الحلول الأكثر كفاءة لتحقيق أفضل قيمة وتحسين الأداء
+                  التشغيلي للمزرعة.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Produced high-quality edible crops using organic farming techniques."
+                  data-ar="إنتاج محاصيل غذائية عالية الجودة باستخدام تقنيات الزراعة العضوية."
+                >
+                  إنتاج محاصيل غذائية عالية الجودة باستخدام تقنيات الزراعة
+                  العضوية.
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-card">
+              <div class="job-header">
+                <h3>National Company for Protective Cultivations</h3>
+                <span
+                  class="job-role i18n"
+                  data-en="Agricultural Engineer"
+                  data-ar="مهندس زراعي"
+                  >مهندس زراعي</span
+                >
+              </div>
+              <div
+                class="job-meta i18n"
+                data-en="February 2023 – June 2023 | Alexandria, Egypt"
+                data-ar="فبراير 2023 – يونيو 2023 | الإسكندرية، مصر"
+              >
+                فبراير 2023 – يونيو 2023 | الإسكندرية، مصر
+              </div>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Supervised greenhouse operations and coordinated daily agricultural activities."
+                  data-ar="الإشراف على عمليات البيوت المحمية وتنظيم الأنشطة الزراعية اليومية."
+                >
+                  الإشراف على عمليات البيوت المحمية وتنظيم الأنشطة الزراعية
+                  اليومية.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Oversaw labor management, crop development, planting, fertilization, weeding, and pest control."
+                  data-ar="إدارة العمال، ومتابعة نمو المحاصيل، والزراعة، والتسميد، والعزق، ومكافحة الآفات."
+                >
+                  إدارة العمال، ومتابعة نمو المحاصيل، والزراعة، والتسميد،
+                  والعزق، ومكافحة الآفات.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Prepared daily schedules and cost estimates for agricultural processes."
+                  data-ar="إعداد الجداول اليومية وتقدير تكاليف جميع العمليات الزراعية."
+                >
+                  إعداد الجداول اليومية وتقدير تكاليف جميع العمليات الزراعية.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Ensured smooth greenhouse cycle management from soil preparation to harvest."
+                  data-ar="ضمان إدارة دورة الإنتاج داخل البيوت المحمية من إعداد التربة حتى الحصاد."
+                >
+                  ضمان إدارة دورة الإنتاج داخل البيوت المحمية من إعداد التربة
+                  حتى الحصاد.
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-card">
+              <div class="job-header">
+                <h3>South Valley for Development</h3>
+                <span
+                  class="job-role i18n"
+                  data-en="Biotechnology Specialist"
+                  data-ar="أخصائي تقنيات حيوية"
+                  >أخصائي تقنيات حيوية</span
+                >
+              </div>
+              <div
+                class="job-meta i18n"
+                data-en="March 2022 – February 2023 | Toshka, Aswan, Egypt"
+                data-ar="مارس 2022 – فبراير 2023 | توشكي، أسوان، مصر"
+              >
+                مارس 2022 – فبراير 2023 | توشكي، أسوان، مصر
+              </div>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Managed and supervised a water treatment station for a slaughterhouse."
+                  data-ar="إدارة وإشراف على محطة معالجة المياه لمسلخ."
+                >
+                  إدارة وإشراف على محطة معالجة المياه لمسلخ.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Responsible for technical operations and sustainable treatment process management."
+                  data-ar="مسؤول عن العمليات الفنية وإدارة عملية المعالجة المستدامة."
+                >
+                  مسؤول عن العمليات الفنية وإدارة عملية المعالجة المستدامة.
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-card">
+              <div class="job-header">
+                <h3>Egyptian French Company for Plant Tissue Culture S.A.E</h3>
+                <span
+                  class="job-role i18n"
+                  data-en="Production Engineer"
+                  data-ar="مهندس إنتاج"
+                  >مهندس إنتاج</span
+                >
+              </div>
+              <div
+                class="job-meta i18n"
+                data-en="October 2021 – January 2022 | Egypt"
+                data-ar="أكتوبر 2021 – يناير 2022 | مصر"
+              >
+                أكتوبر 2021 – يناير 2022 | مصر
+              </div>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Supported production processes in plant tissue culture operations."
+                  data-ar="دعم عمليات الإنتاج في زراعة الأنسجة النباتية."
+                >
+                  دعم عمليات الإنتاج في زراعة الأنسجة النباتية.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Contributed to production efficiency and quality control requirements."
+                  data-ar="مساهمة في رفع كفاءة الإنتاج وضمان جودة العمليات."
+                >
+                  مساهمة في رفع كفاءة الإنتاج وضمان جودة العمليات.
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-card">
+              <div class="job-header">
+                <h3>Zadna Farm for Date Palm Trees</h3>
+                <span
+                  class="job-role i18n"
+                  data-en="Agricultural Engineer"
+                  data-ar="مهندس زراعي"
+                  >مهندس زراعي</span
+                >
+              </div>
+              <div
+                class="job-meta i18n"
+                data-en="July 2021 – September 2021 | El Wahat El Bahariya, Al Jizah, Egypt"
+                data-ar="يوليو 2021 – سبتمبر 2021 | الواحات البحرية، الجيزة، مصر"
+              >
+                يوليو 2021 – سبتمبر 2021 | الواحات البحرية، الجيزة، مصر
+              </div>
+              <ul>
+                <li
+                  class="i18n"
+                  data-en="Followed up daily agricultural processes for date palm trees."
+                  data-ar="متابعة العمليات الزراعية اليومية لأشجار النخيل."
+                >
+                  متابعة العمليات الزراعية اليومية لأشجار النخيل.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Monitored and repaired irrigation issues and maintained field systems."
+                  data-ar="مراقبة وإصلاح مشاكل الري وصيانة نظم الحقل."
+                >
+                  مراقبة وإصلاح مشاكل الري وصيانة نظم الحقل.
+                </li>
+                <li
+                  class="i18n"
+                  data-en="Supported pest management and orchard health protection."
+                  data-ar="دعم مكافحة الآفات وحماية صحة البستان."
+                >
+                  دعم مكافحة الآفات وحماية صحة البستان.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="i18n" data-en="Education" data-ar="التعليم">التعليم</h2>
+            <p
+              class="i18n"
+              data-en="Academic background in biotechnology, orchard science, and genetics."
+              data-ar="خلفية أكاديمية في التكنولوجيا الحيوية، علوم البساتين، والوراثة."
+            >
+              خلفية أكاديمية في التكنولوجيا الحيوية، علوم البساتين، والوراثة.
+            </p>
+          </div>
+
+          <div class="edu-grid">
+            <div class="edu-card">
+              <h3>Cairo University</h3>
+              <p>
+                <strong
+                  class="i18n"
+                  data-en="Diploma of Education, Genetics"
+                  data-ar="دبلوم التربية، وراثة"
+                  >دبلوم التربية، وراثة</strong
+                >
+              </p>
+              <p
+                class="i18n"
+                data-en="September 2023 – July 2024"
+                data-ar="سبتمبر 2023 – يوليو 2024"
+              >
+                سبتمبر 2023 – يوليو 2024
+              </p>
+            </div>
+
+            <div class="edu-card">
+              <h3>Benha University</h3>
+              <p>
+                <strong
+                  class="i18n"
+                  data-en="Diploma of Education, Orchard"
+                  data-ar="دبلوم التربية، بساتين"
+                  >دبلوم التربية، بساتين</strong
+                >
+              </p>
+              <p
+                class="i18n"
+                data-en="March 2021 – March 2022"
+                data-ar="مارس 2021 – مارس 2022"
+              >
+                مارس 2021 – مارس 2022
+              </p>
+            </div>
+
+            <div class="edu-card">
+              <h3>Benha University</h3>
+              <p>
+                <strong
+                  class="i18n"
+                  data-en="B.Sc., Biotechnology"
+                  data-ar="بكالوريوس تكنولوجيا حيوية"
+                  >بكالوريوس تكنولوجيا حيوية</strong
+                >
+              </p>
+              <p
+                class="i18n"
+                data-en="July 2017 – January 2021"
+                data-ar="يوليو 2017 – يناير 2021"
+              >
+                يوليو 2017 – يناير 2021
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div
+        class="container i18n"
+        data-en="© 2025 Mohamed Awwad | Agricultural Engineer"
+        data-ar="© 2025 محمد عواد | مهندس زراعي"
+      >
+        © 2025 محمد عواد | مهندس زراعي
+      </div>
+    </footer>
+
+    <script>
+      const body = document.body;
+      const langButtons = document.querySelectorAll(".lang-btn");
+      const i18nItems = document.querySelectorAll(".i18n");
+
+      function setLanguage(lang) {
+        body.classList.remove("ar", "en");
+        body.classList.add(lang);
+        body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+        body.setAttribute("lang", lang === "ar" ? "ar" : "en");
+
+        langButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
+        });
+
+        i18nItems.forEach((el) => {
+          const text = lang === "ar" ? el.dataset.ar : el.dataset.en;
+          if (text) el.textContent = text;
+        });
+      }
+
+      langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+      });
+
+      setLanguage("ar");
+    </script>
+  </body>
+</html>
